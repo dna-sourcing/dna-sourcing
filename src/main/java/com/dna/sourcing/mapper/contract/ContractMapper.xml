@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dna.sourcing.mapper.contract.ContractMapper">
+
+	<insert id="insertBatch">
+		INSERT INTO tbl_contract (dnaid, company_dnaid, txhash, filehash, type,
+		timestamp, create_time, update_time,
+		detail, timestamp_sign)
+		VALUES
+		<foreach collection="contractList" item="record" separator=",">
+			(#{record.dnaid,jdbcType=VARCHAR}, #{record.companyDnaid,jdbcType=VARCHAR}, #{record.txhash,jdbcType=VARCHAR}, #{record.filehash,jdbcType=VARCHAR},
+			#{record.type,jdbcType=VARCHAR},
+			#{record.timestamp,jdbcType=TIMESTAMP}, #{record.createTime,jdbcType=TIMESTAMP}, #{record.updateTime,jdbcType=TIMESTAMP},
+			#{record.detail,jdbcType=LONGVARCHAR}, #{record.timestampSign,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+
+</mapper>
