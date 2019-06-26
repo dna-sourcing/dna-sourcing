@@ -161,21 +161,21 @@ public class ContractService {
                                            String c_value) throws Exception {
 
         // 先查询是不是项目方，有没有设置指定的payer地址和合约地址
-        String c_dnaid = contract.getCompanyDnaid();
-        //
-        Example example = new Example(ContractCompany.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andCondition("dnaid=", c_dnaid);
-        ContractCompany contractCompany = contractCompanyMapper.selectOneByExample(example);
-        //
-        if (contractCompany != null) {
-            payer = GlobalVariable.getInstanceOfAccount(contractCompany.getPrikey());
-            codeAddr = contractCompany.getCodeAddr();
-            // String s1 = payer.getAddressU160().toBase58();
-        } else {
-            // TODO
-            throw new Exception("项目方地址列表中找不到该dnaid..." + c_dnaid);
-        }
+        // String c_dnaid = contract.getCompanyDnaid();
+        // //
+        // Example example = new Example(ContractCompany.class);
+        // Example.Criteria criteria = example.createCriteria();
+        // criteria.andCondition("dnaid=", c_dnaid);
+        // ContractCompany contractCompany = contractCompanyMapper.selectOneByExample(example);
+        // //
+        // if (contractCompany != null) {
+        //     payer = GlobalVariable.getInstanceOfAccount(contractCompany.getPrikey());
+        //     codeAddr = contractCompany.getCodeAddr();
+        //     // String s1 = payer.getAddressU160().toBase58();
+        // } else {
+        //     // TODO
+        //     throw new Exception("项目方地址列表中找不到该dnaid..." + c_dnaid);
+        // }
         // String s2 = payer.getAddressU160().toBase58();
 
         //
@@ -221,15 +221,15 @@ public class ContractService {
         byte[] params = BuildParams.createCodeParamsScript(paramList);
 
         // 先查询是不是项目方，有没有设置指定的payer地址和合约地址
-        Example example = new Example(ContractCompany.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andCondition("dnaid=", contract.getCompanyDnaid());
-        ContractCompany contractCompany = contractCompanyMapper.selectOneByExample(example);
-        //
-        if (contractCompany != null) {
-            payer = GlobalVariable.getInstanceOfAccount(contractCompany.getPrikey());
-            codeAddr = Address.AddressFromVmCode(contractCompany.getCodeAddr()).toHexString();
-        }
+        // Example example = new Example(ContractCompany.class);
+        // Example.Criteria criteria = example.createCriteria();
+        // criteria.andCondition("dnaid=", contract.getCompanyDnaid());
+        // ContractCompany contractCompany = contractCompanyMapper.selectOneByExample(example);
+        // //
+        // if (contractCompany != null) {
+        //     payer = GlobalVariable.getInstanceOfAccount(contractCompany.getPrikey());
+        //     codeAddr = Address.AddressFromVmCode(contractCompany.getCodeAddr()).toHexString();
+        // }
 
         //
         Map<String, String> map = invokeContract(Helper.reverse(codeAddr), null, params, payer, chainService.ontSdk.DEFAULT_GAS_LIMIT, GlobalVariable.DEFAULT_GAS_PRICE, true);

@@ -358,13 +358,13 @@ public class ContractController {
         }
 
         // 查看项目有没有添加定制信息
-        try {
-            contractService.checkCompany(company_dnaid);
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            rst.setErrorAndDesc(e);
-            return new ResponseEntity<>(rst, HttpStatus.OK);
-        }
+        // try {
+        //     contractService.checkCompany(company_dnaid);
+        // } catch (Exception e) {
+        //     logger.error(e.getMessage());
+        //     rst.setErrorAndDesc(e);
+        //     return new ResponseEntity<>(rst, HttpStatus.OK);
+        // }
 
         //
         if (StringUtils.isEmpty(user_dnaid))
@@ -464,13 +464,13 @@ public class ContractController {
         }
 
         // 查看项目有没有添加定制信息
-        try {
-            contractService.checkCompany(company_dnaid);
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            rst.setErrorAndDesc(e);
-            return new ResponseEntity<>(rst, HttpStatus.OK);
-        }
+        // try {
+        //     contractService.checkCompany(company_dnaid);
+        // } catch (Exception e) {
+        //     logger.error(e.getMessage());
+        //     rst.setErrorAndDesc(e);
+        //     return new ResponseEntity<>(rst, HttpStatus.OK);
+        // }
 
         //
         if (StringUtils.isEmpty(user_dnaid))
