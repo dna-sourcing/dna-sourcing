@@ -10,6 +10,7 @@ import com.dna.sourcing.mapper.EventMapper;
 import com.dna.sourcing.mapper.contract.ContractCompanyMapper;
 import com.dna.sourcing.mapper.contract.ContractMapper;
 import com.dna.sourcing.mapper.ddo.ActionDnaidMapper;
+import com.dna.sourcing.service.oauth.JWTService;
 import com.dna.sourcing.service.util.ChainService;
 import com.dna.sourcing.service.util.PropertiesService;
 import com.dna.sourcing.util.GlobalVariable;
@@ -41,6 +42,7 @@ public class ContractService {
 
     //
     private ChainService chainService;
+    private JWTService jwtService;
 
     //
     private ContractMapper contractMapper;
@@ -55,12 +57,14 @@ public class ContractService {
     @Autowired
     public ContractService(PropertiesService propertiesService,
                            ChainService chainService,
+                           JWTService jwtService,
                            ContractMapper contractMapper,
                            EventMapper eventMapper,
                            ContractCompanyMapper contractCompanyMapper,
                            ActionDnaidMapper actionDnaidMapper) {
         //
         this.chainService = chainService;
+        this.jwtService = jwtService;
 
         //
         this.contractMapper = contractMapper;
@@ -112,6 +116,31 @@ public class ContractService {
         actionDnaidMapper.insertSelective(record);
 
         //
+        return map;
+    }
+
+    //
+    public Map<String, String> login(String username,
+                                     String password) throws Exception {
+
+        // 先检查username是否已注册
+        Example example = new Example(ActionDnaid.class);
+        example.createCriteria().andCondition("username=", username);
+        ActionDnaid existed = actionDnaidMapper.selectOneByExample(example);
+        if (existed == null) {
+            throw new Exception("username not exist.");
+        }
+
+        // String tmp = SCryptUtil.scrypt(password, GlobalVariable.scrypt_N, GlobalVariable.scrypt_r, GlobalVariable.scrypt_p);
+        if (!SCryptUtil.check(password, existed.getPassword())) {
+            throw new Exception("password error.");
+        }
+
+        //
+        String user_dnaid = existed.getDnaid();
+
+        Map<String, String> map = jwtService.getAccessToken(user_dnaid);
+
         return map;
     }
 

@@ -66,6 +66,51 @@ method：POST
 | version    | String | 版本号                        |（）
 
 
+### 登录
+
+```text
+url：/api/v1/dnaid/login
+method：POST
+```
+
+- 请求：
+
+```json
+{
+    "username":"user1",
+    "password":"999999"
+}
+```
+
+| Field_Name | Type   | Description |
+|:-----------|:-------|:------------|
+| username   | String | 用户名    |
+| password   | String | 密码    |
+
+- 响应：
+
+```json
+{
+    "action": "creatednaid",
+    "version": "1.0.0",
+    "result": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJkaWQ6ZG5hOkFUNlhkNW9rQTY4RThVWXM4ZnF2RkRycGFVSEFtMURyN3UiLCJpc3MiOiJkaWQ6b250OkFkajdXNVoyaFRlS0g3WXdKc2ZNekx1d2lENjcxbXZKNlgiLCJleHAiOjE1NjE2MjIzNTUsImlhdCI6MTU2MTUzNTk1NSwianRpIjoiNTBhNzkwYTBlMWQ0NGNlMGEzYjk2ZDY2Mjg1ZGY3MGYiLCJjb250ZW50Ijp7InR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJvbnRpZCI6ImRpZDpkbmE6QVQ2WGQ1b2tBNjhFOFVZczhmcXZGRHJwYVVIQW0xRHI3dSJ9fQ.MDFiMmFhMzdkYzNkMmNjOGUyYTA5ZmIyMWI3ZTFjMDE5NTVkODk2ZGJjNjUxNWFlZmQyZDZmZjI4NDRhOGY1MTUxMjZmMDYzNjlmNjFhOWI1NTc4N2Y3ZTZjMTA3NWI3NWI5YjhmODcyNmUwMzI3NjM4MTEzOTJiMjQ2NTM3ODA1MA",
+        "user_ontid": "did:dna:AT6Xd5okA68E8UYs8fqvFDrpaUHAm1Dr7u"
+    },
+    "error": 0,
+    "desc": "SUCCESS"
+}
+```
+
+| Field_Name | Type   | Description                   |
+|:-----------|:-------|:------------------------------|
+| error      | int    | 错误码                        |
+| action     | String | 动作标志                      |
+| desc       | String | 成功返回SUCCESS，失败返回错误描述 |
+| result     | String | 成功返回结果，失败返回""     |
+| version    | String | 版本号                        |
+
+
 ### 获取access_token
 
 ```text

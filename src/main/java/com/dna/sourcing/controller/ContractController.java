@@ -217,6 +217,47 @@ public class ContractController {
         }
     }
 
+    @PostMapping("/dnaid/login")
+    public ResponseEntity<Result> login(@RequestBody LinkedHashMap<String, Object> obj) {
+
+        //
+        Result rst = new Result("creatednaid");
+
+        //
+        Set<String> required = new HashSet<>();
+        required.add("username");
+        required.add("password");
+
+        //
+        try {
+            validateService.validateParamsKeys(obj, required);
+            validateService.validateParamsValues(obj);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            rst.setErrorAndDesc(e);
+            return new ResponseEntity<>(rst, HttpStatus.OK);
+        }
+
+        //
+        String username = (String) obj.get("username");
+        String password = (String) obj.get("password");
+
+        //
+        try {
+            //
+            Map<String, String> map = contractService.login(username, password);
+            //
+            rst.setResult(map);
+            //
+            rst.setErrorAndDesc(ErrorCode.SUCCESSS);
+            return new ResponseEntity<>(rst, HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            rst.setErrorAndDesc(e);
+            return new ResponseEntity<>(rst, HttpStatus.OK);
+        }
+    }
+
     @PostMapping("/dnaid/token")
     public ResponseEntity<Result> getAccessToken(@RequestBody LinkedHashMap<String, Object> obj) {
 
