@@ -130,16 +130,16 @@ public class SecurePropertiesService {
     // }
 
 
-    // private static String WALLET_ONTID;
+    // private static String WALLET_DNAID;
     //
     // @Value("${wallet.dnaid}")
     // public void setWalletDnaid(String walletDnaid) {
-    //     SecureConfig.WALLET_ONTID = walletDnaid;
+    //     SecureConfig.WALLET_DNAID = walletDnaid;
     // }
     //
     // public String getWalletDnaid() {
     //     try {
-    //         return Base64ConvertUtil.decode(SecureConfig.WALLET_ONTID);
+    //         return Base64ConvertUtil.decode(SecureConfig.WALLET_DNAID);
     //     } catch (UnsupportedEncodingException e) {
     //         logger.error(e.getMessage());
     //         logger.error(e.getMessage());

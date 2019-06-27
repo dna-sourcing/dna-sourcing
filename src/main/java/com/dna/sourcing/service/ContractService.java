@@ -16,7 +16,6 @@ import com.dna.sourcing.service.util.PropertiesService;
 import com.dna.sourcing.util.GlobalVariable;
 import com.dna.sourcing.util._hash.Sha256Util;
 import com.github.ontio.account.Account;
-import com.github.ontio.common.Address;
 import com.github.ontio.common.Helper;
 import com.github.ontio.core.transaction.Transaction;
 import com.github.ontio.network.exception.ConnectorException;
@@ -117,6 +116,24 @@ public class ContractService {
 
         //
         return map;
+    }
+
+    //
+    public void loginByDnaid(String user_dnaid,
+                             String password) throws Exception {
+
+        // 先检查user_dnaid是否已注册
+        Example example = new Example(ActionDnaid.class);
+        example.createCriteria().andCondition("dnaid=", user_dnaid);
+        ActionDnaid existed = actionDnaidMapper.selectOneByExample(example);
+        if (existed == null) {
+            throw new Exception("user_dnaid not exist.");
+        }
+
+        // String tmp = SCryptUtil.scrypt(password, GlobalVariable.scrypt_N, GlobalVariable.scrypt_r, GlobalVariable.scrypt_p);
+        if (!SCryptUtil.check(password, existed.getPassword())) {
+            throw new Exception("password error.");
+        }
     }
 
     //

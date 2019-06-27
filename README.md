@@ -97,7 +97,7 @@ method：POST
     "version": "1.0.0",
     "result": {
         "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJkaWQ6ZG5hOkFUNlhkNW9rQTY4RThVWXM4ZnF2RkRycGFVSEFtMURyN3UiLCJpc3MiOiJkaWQ6b250OkFkajdXNVoyaFRlS0g3WXdKc2ZNekx1d2lENjcxbXZKNlgiLCJleHAiOjE1NjE2MjIzNTUsImlhdCI6MTU2MTUzNTk1NSwianRpIjoiNTBhNzkwYTBlMWQ0NGNlMGEzYjk2ZDY2Mjg1ZGY3MGYiLCJjb250ZW50Ijp7InR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJvbnRpZCI6ImRpZDpkbmE6QVQ2WGQ1b2tBNjhFOFVZczhmcXZGRHJwYVVIQW0xRHI3dSJ9fQ.MDFiMmFhMzdkYzNkMmNjOGUyYTA5ZmIyMWI3ZTFjMDE5NTVkODk2ZGJjNjUxNWFlZmQyZDZmZjI4NDRhOGY1MTUxMjZmMDYzNjlmNjFhOWI1NTc4N2Y3ZTZjMTA3NWI3NWI5YjhmODcyNmUwMzI3NjM4MTEzOTJiMjQ2NTM3ODA1MA",
-        "user_ontid": "did:dna:AT6Xd5okA68E8UYs8fqvFDrpaUHAm1Dr7u"
+        "user_dnaid": "did:dna:AT6Xd5okA68E8UYs8fqvFDrpaUHAm1Dr7u"
     },
     "error": 0,
     "desc": "SUCCESS"
@@ -124,14 +124,15 @@ method：POST
 
 ```json
 {
-    "user_ontid":"did:dna:APd46pRkKCSzF9tSqrX8kBDbaDxufAgwVw"
+    "user_dnaid":"did:dna:APd46pRkKCSzF9tSqrX8kBDbaDxufAgwVw",
+    "password":"999999"
 }
 ```
 
 | Field_Name | Type   | Description |
 |:-----------|:-------|:------------|
-| username   | String | 设置用户名    |
-| password   | String | 设置密码    |
+| user_dnaid   | String |     |
+| password   | String |    |
 
 - 响应：
 
@@ -139,7 +140,7 @@ method：POST
 {
     "result": {
         "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJkaWQ6ZG5hOkFQZDQ2cFJrS0NTekY5dFNxclg4a0JEYmFEeHVmQWd3VnciLCJpc3MiOiJkaWQ6b250OkFkajdXNVoyaFRlS0g3WXdKc2ZNekx1d2lENjcxbXZKNlgiLCJleHAiOjE1NjE2MDY1MTAsImlhdCI6MTU2MTUyMDExMCwianRpIjoiOTE0Nzg0OWI3NjkwNGNlY2JmYmE5YmRkZmU3ZThkNTAiLCJjb250ZW50Ijp7InR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJvbnRpZCI6ImRpZDpkbmE6QVBkNDZwUmtLQ1N6Rjl0U3FyWDhrQkRiYUR4dWZBZ3dWdyJ9fQ.MDE3YjZlNzI0ZDY0ZjMyMGRlZjgxNTZmZmJhMzQ5NTVlNWI4NjcyNmExOGZmNzRkZWE2ZDYwZDRjNTU2NGMzZjNmYzZhNmI4NmRhYzE4OTI2YzU1MWI4NzA3Y2RiZGU0OTQ2ZDE1NjE0Yjc0MGU5ZTE1ODkwZmU4YzQyYzA2YTVhYw",
-        "user_ontid": "did:dna:APd46pRkKCSzF9tSqrX8kBDbaDxufAgwVw"
+        "user_dnaid": "did:dna:APd46pRkKCSzF9tSqrX8kBDbaDxufAgwVw"
     },
     "error": 0,
     "action": "getAccessToken",
@@ -764,8 +765,8 @@ method：POST
 |:-----------|:-------|:------------------------------|
 | 0      | SUCCESS | 成功 |
 | 61001      | INVALID_PARAMS | 参数错误 |
-| 71001      | ONTID_EXIST | dnaid错误 |
-| 71002      | ONTID_NOT_EXIST | dnaid错误 |
+| 71001      | DNAID_EXIST | dnaid错误 |
+| 71002      | DNAID_NOT_EXIST | dnaid错误 |
 | 80001      | BLOCKCHAIN_ERROR | 区块链错误 |
 | 100000      | INTERNAL_SERVER_ERROR | 服务器内部错误 |
 

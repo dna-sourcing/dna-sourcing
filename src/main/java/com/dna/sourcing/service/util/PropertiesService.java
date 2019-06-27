@@ -15,7 +15,7 @@ public class PropertiesService {
                              @Value("${com.dna.sourcing.PAYER_PRIVATE_KEY}") String payerPrivateKey,
                              @Value("${com.dna.sourcing.WALLET_PATH}") String walletPath,
                              @Value("${com.dna.sourcing.ONTOLOGY_URL_LIST}") String[] ontologyUrlList,
-                             @Value("${com.dna.sourcing.ONTID_PUBLIC_KEY}") String dnaidPublicKey,
+                             @Value("${com.dna.sourcing.DNAID_PUBLIC_KEY}") String dnaidPublicKey,
                              @Value("${com.dna.sourcing.CONTRACT_CODE_ADDRESS}") String codeAddr,
                              @Value("${com.dna.sourcing.ONT_PASSWORD}") String ontPassword) {
         //

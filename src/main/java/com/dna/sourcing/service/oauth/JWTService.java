@@ -28,22 +28,25 @@ public class JWTService {
     String ontAuthJWTVerificationUrl;
 
     //
-    public JWTService(@Value("${ont.auth.jwt.url}") String ontAuthJWTUrl, @Value("${ont.auth.jwt.verification.url}") String ontAuthJWTVerificationUrl) {
+    public JWTService(@Value("${ont.auth.jwt.url}") String ontAuthJWTUrl,
+                      @Value("${ont.auth.jwt.verification.url}") String ontAuthJWTVerificationUrl) {
         this.ontAuthJWTUrl = ontAuthJWTUrl;
         this.ontAuthJWTVerificationUrl = ontAuthJWTVerificationUrl;
     }
 
     //
-    public Map<String,String> getAccessToken(String user_ontid) throws Exception {
+    public Map<String, String> getAccessToken(String user_dnaid) throws Exception {
+
         //
         JSONObject obj = new JSONObject();
-        obj.put("user_ontid", user_ontid);
+        obj.put("user_dnaid", user_dnaid);
         //
         HttpUtil.HttpInfo httpInfo = HttpUtil.doPost(ontAuthJWTUrl, HttpUtil.JSON, obj);
         //
         try {
             ResponseBean response = gson.fromJson(httpInfo.responseBody, ResponseBean.class);
-            Map<String,String> rst = (Map<String,String>) response.getResult();
+            Map<String, String> rst = (Map<String, String>) response.getResult();
+            //
             return rst;
         } catch (Exception e) {
             //
@@ -80,7 +83,7 @@ public class JWTService {
         //
         DecodedJWT jwt = JWT.decode(access_token);
         // 只能输出String类型，如果是其他类型返回null
-        String dnaid = (String) jwt.getClaim("content").asMap().get("ontid"); // 这里不能改成dnaid
+        String dnaid = (String) jwt.getClaim("content").asMap().get("dnaid"); // 这里不能改成dnaid
         return dnaid;
     }
 }

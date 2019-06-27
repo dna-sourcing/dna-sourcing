@@ -266,7 +266,8 @@ public class ContractController {
 
         //
         Set<String> required = new HashSet<>();
-        required.add("user_ontid");
+        required.add("user_dnaid");
+        required.add("password");
 
         //
         try {
@@ -279,11 +280,16 @@ public class ContractController {
         }
 
         //
-        String user_ontid = (String) obj.get("user_ontid");
+        String user_dnaid = (String) obj.get("user_dnaid");
+        String password = (String) obj.get("password");
 
         //
         try {
-            Map<String,String> map = jwtService.getAccessToken(user_ontid);
+            //
+            contractService.loginByDnaid(user_dnaid, password);
+
+            //
+            Map<String, String> map = jwtService.getAccessToken(user_dnaid);
             //
             // String access_token = map.get("access_token");
             // String txhash = map.get("txhash");
@@ -906,7 +912,7 @@ public class ContractController {
         //
         ContractCompany existed = contractService.getCompany(dnaid);
         if (existed != null) {
-            rst.setErrorAndDesc(ErrorCode.ONTID_EXIST);
+            rst.setErrorAndDesc(ErrorCode.DNAID_EXIST);
             return new ResponseEntity<>(rst, HttpStatus.OK);
         }
 
@@ -963,7 +969,7 @@ public class ContractController {
         //
         ContractCompany existed = contractService.getCompany(dnaid);
         if (existed == null) {
-            rst.setErrorAndDesc(ErrorCode.ONTID_NOT_EXIST);
+            rst.setErrorAndDesc(ErrorCode.DNAID_NOT_EXIST);
             return new ResponseEntity<>(rst, HttpStatus.OK);
         }
 
