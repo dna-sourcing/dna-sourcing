@@ -15,7 +15,8 @@ public class GlobalVariable {
     public static String API_VERSION = "1.0.0";
 
     //
-    public static int DEFAULT_GAS_PRICE = 500;
+    // public static int DEFAULT_GAS_PRICE = 500;
+    public static int DEFAULT_GAS_PRICE = 0;
 
     //
     private static Account instanceOfAccount = null;

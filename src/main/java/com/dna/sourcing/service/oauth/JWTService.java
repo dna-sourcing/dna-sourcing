@@ -2,7 +2,6 @@ package com.dna.sourcing.service.oauth;
 
 import ch.qos.logback.classic.Logger;
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dna.sourcing.model.common.ResponseBean;
 import com.dna.sourcing.util.HttpUtil;
@@ -11,6 +10,7 @@ import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
@@ -79,11 +79,16 @@ public class JWTService {
     }
 
     //
-    public String getContentUser(String access_token) throws JWTDecodeException {
+    public String getContentUser(String access_token) throws Exception {
         //
         DecodedJWT jwt = JWT.decode(access_token);
         // 只能输出String类型，如果是其他类型返回null
         String dnaid = (String) jwt.getClaim("content").asMap().get("dnaid"); // 这里不能改成dnaid
+        // todo
+        if (StringUtils.isEmpty(dnaid)) {
+            throw new Exception("请重新获取access_token");
+        }
+        //
         return dnaid;
     }
 }
