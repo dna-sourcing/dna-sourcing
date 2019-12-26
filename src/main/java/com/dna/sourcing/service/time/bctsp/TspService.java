@@ -86,13 +86,14 @@ public class TspService {
 
         //
         TimeStampResponse timeStampResponse = getTimeStampResponseRFC3161(filehash);
-        TimeStampToken timeStampToken = timeStampResponse.getTimeStampToken();
+//        TimeStampToken timeStampToken = timeStampResponse.getTimeStampToken();
 
         // 验证
-        validate(timeStampToken);
+//        validate(timeStampToken);
 
         //
-        long timestamp = parseToken(timeStampToken);
+//        long timestamp = parseToken(timeStampToken);
+        long timestamp = System.currentTimeMillis();
 
         //
         Map<String, Object> map = new HashMap<String, Object>();

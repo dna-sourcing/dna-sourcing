@@ -19,7 +19,7 @@ public class Event {
     private String event;
 
     @Column
-    private int height;
+    private Integer height;
 
     @Column(name = "create_time")
     private Date createTime;

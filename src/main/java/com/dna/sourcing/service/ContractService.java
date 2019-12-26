@@ -416,10 +416,13 @@ public class ContractService {
         //
         Example.Criteria c1 = example.createCriteria();
         c1.andCondition("dnaid=", dnaid);
-        c1.andCondition("txhash=", txhash);
         c1.andCondition("status=", 0);
+
+        Example.Criteria c2 = example.createCriteria();
+        c2.orEqualTo("txhash", txhash).orEqualTo("filehash", txhash);
         //
         example.and(c1);
+        example.and(c2);
         //
         List<Contract> list = contractMapper.selectByExample(example);
         //
@@ -455,6 +458,7 @@ public class ContractService {
         //
         Example.Criteria c1 = example.createCriteria();
         c1.andCondition("dnaid=", dnaid);
+        // todo 没做state判断
         //
         Example.Criteria c2 = example.createCriteria();
         c2.orEqualTo("txhash", hash).orEqualTo("filehash", hash);
