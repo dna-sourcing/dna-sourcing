@@ -92,7 +92,7 @@ public class ContractService {
         Map<String, String> map = new HashMap<String, String>();
 
         // 创建数字身份 identity
-        Identity identity = chainService.ontSdk.getWalletMgr().createIdentity(password);
+        Identity identity = chainService.createIdentity(password);
 
         //
         map.put("txhash", "");

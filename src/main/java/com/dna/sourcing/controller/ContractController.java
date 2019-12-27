@@ -536,7 +536,7 @@ public class ContractController {
                         long timestamp = (long) map.get("timestamp");
                         String timestampSign = map.get("timestampSign").toString();
                         //
-                        contract.setTimestamp(new Date(timestamp * 1000L));
+                        contract.setTimestamp(new Date(timestamp));
                         contract.setTimestampSign(timestampSign);
                         //
                         Map<String, String> map2 = contractService.putContract(contract);
