@@ -869,7 +869,6 @@ public class ContractController {
         //
         String hash = (String) obj.get("hash");
 
-        // dnaid 也要作为条件，否则查到别人的了
         List<Contract> list = contractService.selectByHash(hash);
 
         //

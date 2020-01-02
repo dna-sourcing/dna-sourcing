@@ -396,11 +396,11 @@ public class ContractService {
     public List<Contract> getExplorerHistory(int pageNum,
                                              int pageSize) {
         //
-        PageHelper.startPage(pageNum, pageSize);
         //
         Example example = new Example(Contract.class);
         example.createCriteria().andCondition("status=", 0);
         example.setOrderByClause("id desc");
+        PageHelper.startPage(pageNum, pageSize,false);
         List<Contract> list = contractMapper.selectByExample(example);
         //
         return addHeight(list);
@@ -478,13 +478,13 @@ public class ContractService {
         Example example = new Example(Contract.class);
         //
         Example.Criteria c1 = example.createCriteria();
-        c1.andCondition("txhash=", hash);
+        c1.andEqualTo("status", 0);
         //
         Example.Criteria c2 = example.createCriteria();
-        c2.andCondition("filehash=", hash);
+        c2.orEqualTo("txhash", hash).orEqualTo("filehash", hash);
         //
         example.and(c1);
-        example.or(c2);
+        example.and(c2);
         //
         List<Contract> list = contractMapper.selectByExample(example);
         //
