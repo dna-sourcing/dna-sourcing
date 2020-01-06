@@ -84,8 +84,9 @@ public class TspService {
 
     public Map<String, Object> getTimeStampMap(String filehash) throws IOException, DecoderException, TSPException {
 
-        //
-        TimeStampResponse timeStampResponse = getTimeStampResponseRFC3161(filehash);
+        // cannot connect public network
+
+//        TimeStampResponse timeStampResponse = getTimeStampResponseRFC3161(filehash);
 //        TimeStampToken timeStampToken = timeStampResponse.getTimeStampToken();
 
         // 验证
@@ -99,8 +100,9 @@ public class TspService {
         Map<String, Object> map = new HashMap<String, Object>();
 
         //
+        String timeStampResponseToHexStr = "44c03042304002010230360c34746865207265717565737465642054534120706f6c696379206973206e6f7420737570706f72011c38627920746865205453410303000001";
         map.put("timestamp", timestamp);
-        map.put("timestampSign", timeStampResponseToHexStrCompressed(timeStampResponse));
+        map.put("timestampSign", timeStampResponseToHexStr);
 
         //
         return map;
