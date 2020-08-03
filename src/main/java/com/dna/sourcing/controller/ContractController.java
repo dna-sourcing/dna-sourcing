@@ -142,7 +142,7 @@ public class ContractController {
                 syncService.confirmTx(txhash);
             } catch (Exception e) {
                 // logger.error(e.getMessage());
-                logger.error("{}",e);
+                logger.error("{}", e);
                 // TODO
                 return;
             }
@@ -387,10 +387,14 @@ public class ContractController {
             contract.setType(type);
             contract.setCreateTime(new Date());
             //
+            System.out.println(async);
             if (async) {
                 //
+                System.out.println("send to kafka");
+                System.out.println(ontSourcingTopicPut);
                 kafkaTemplate.send(ontSourcingTopicPut, gson.toJson(contract, Contract.class));
                 //
+                System.out.println("send to kafka finish");
                 rst.setResult(true);
                 rst.setErrorAndDesc(ErrorCode.SUCCESSS);
                 return new ResponseEntity<>(rst, HttpStatus.OK);
@@ -523,10 +527,12 @@ public class ContractController {
                 contract.setCreateTime(new Date());
 
                 //
+                System.out.println(async);
                 if (async) {
                     //
+                    System.out.println("send to kafka");
                     kafkaTemplate.send(ontSourcingTopicPut, gson.toJson(contract, Contract.class));
-
+                    System.out.println("send to kafka finish");
                 } else {
                     try {
 
