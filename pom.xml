@@ -26,7 +26,7 @@
 
 		<!---->
 		<swagger.version>2.9.2</swagger.version>
-		<bc.version>1.61</bc.version>
+		<bc.version>1.67</bc.version>
 	</properties>
 
 	<dependencies>
